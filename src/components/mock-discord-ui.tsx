@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { Icons } from './icons'
+import { PlusCircle } from 'lucide-react'
 
 export const MockDiscordUI = ({ children }: PropsWithChildren) => {
   return (
@@ -22,6 +23,12 @@ export const MockDiscordUI = ({ children }: PropsWithChildren) => {
             </span>
           </div>
         ))}
+
+        <div
+          className='group mt-auto size-12 bg-discord-background rounded-3xl flex items-center justify-center mb-3 hover:rounded-xl transition-all duration-200 hover:bg-[#3ba55c] cursor-not-allowed'
+        >
+          <PlusCircle className='text-[#3ba55c] group-hover:text-white' />
+        </div>
       </div>
     </div>
 
