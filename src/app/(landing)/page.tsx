@@ -272,7 +272,7 @@ export default async function Home() {
         </MaxWidthWrapper>
       </section >
 
-      <section></section>
+      <section className=""></section>
     </>
   )
 }
