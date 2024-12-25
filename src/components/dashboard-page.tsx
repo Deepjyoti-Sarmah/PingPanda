@@ -3,8 +3,8 @@
 import { ReactNode } from "react"
 import { Button } from "./ui/button"
 import { ArrowLeft } from "lucide-react"
-import { useRouter } from "next/navigation"
 import { Heading } from "./heading"
+import { useRouter } from "next/navigation"
 
 interface DashboardPageProps {
   title: string
@@ -16,10 +16,10 @@ interface DashboardPageProps {
 export const DashboardPage = ({
   title,
   children,
-  hideBackButton,
   cta,
+  hideBackButton,
 }: DashboardPageProps) => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <section className="flex-1 h-full w-full flex flex-col">
@@ -35,10 +35,11 @@ export const DashboardPage = ({
                 <ArrowLeft className="size-4" />
               </Button>
             )}
+
             <Heading>{title}</Heading>
           </div>
 
-          {cta ? <div className="w-full"></div> : null}
+          {cta ? <div className="w-full">{cta}</div> : null}
         </div>
       </div>
 
@@ -46,7 +47,6 @@ export const DashboardPage = ({
         {children}
       </div>
     </section>
-
   )
 }
 
