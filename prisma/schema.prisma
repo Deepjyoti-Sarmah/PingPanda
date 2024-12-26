@@ -29,9 +29,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  EventCategory EventCategory[]
-  events        Event[]
-  Quota         Quota[]
+  EventCategories EventCategory[]
+  events          Event[]
+  Quota           Quota[]
 
   @@index([email, apiKey])
 }
@@ -59,8 +59,8 @@ enum DeliveryStatus {
 }
 
 model Event {
-  id              String @id @default(cuid())
-  formatedMessage String
+  id               String @id @default(cuid())
+  formattedMessage String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
@@ -88,5 +88,5 @@ model Quota {
   month Int
   count Int @default(0)
 
-  updatedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

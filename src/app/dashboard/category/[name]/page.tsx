@@ -1,8 +1,8 @@
-import { DashboardPage } from '@/components/dashboard-page'
-import { db } from '@/db'
-import { currentUser } from '@clerk/nextjs/server'
-import { notFound } from 'next/navigation'
-import React from 'react'
+import { DashboardPage } from "@/components/dashboard-page"
+import { db } from "@/db"
+import { currentUser } from "@clerk/nextjs/server"
+import { notFound } from "next/navigation"
+import { CategoryPageContent } from "./category-page-content"
 
 interface PageProps {
   params: {
@@ -20,7 +20,7 @@ const Page = async ({ params }: PageProps) => {
   }
 
   const user = await db.user.findUnique({
-    where: { externalId: auth.id }
+    where: { externalId: auth.id },
   })
 
   if (!user) return notFound()
@@ -35,19 +35,19 @@ const Page = async ({ params }: PageProps) => {
     include: {
       _count: {
         select: {
-          events: true,
-        },
-      },
-    },
-  })
+          events: true
+        }
+      }
+    }
+  });
 
-  if (!category) return notFound()
+  if (!category) return notFound();
 
-  const hasEvents = category._count.events > 0
+  const hasEvents = category._count.events > 0;
 
   return (
     <DashboardPage title={`${category.emoji} ${category.name} events`}>
-      <p>Page</p>
+      <CategoryPageContent hasEvents={hasEvents} category={category} />
     </DashboardPage>
   )
 }
