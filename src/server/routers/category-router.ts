@@ -10,8 +10,10 @@ export const categoryRouter = router({
 
   getEventCategories: privateProcedure
     .query(async ({ c, ctx }) => {
+
       const now = new Date();
       const firstDayofMonth = startOfMonth(now)
+
       const categories = await db.eventCategory.findMany({
         where: { userId: ctx.user.id },
         select: {
@@ -21,6 +23,20 @@ export const categoryRouter = router({
           color: true,
           updatedAt: true,
           createdAt: true,
+          events: {
+            where: { createdAt: { gte: firstDayofMonth } },
+            select: {
+              fields: true,
+              createdAt: true,
+            },
+          },
+          _count: {
+            select: {
+              events: {
+                where: { createdAt: { gte: firstDayofMonth } },
+              },
+            },
+          },
         },
         orderBy: { updatedAt: "desc" }
       })
@@ -115,4 +131,21 @@ export const categoryRouter = router({
 
       return c.json({ eventCategory })
     }),
+
+  insertQuickstartCategories: privateProcedure.mutation(async ({ ctx, c }) => {
+    const categories = await db.eventCategory.createMany({
+      data: [
+        { name: "bug", emoji: "🐛", color: 0xff6b6b },
+        { name: "sale", emoji: "💰", color: 0xffeb3b },
+        { name: "question", emoji: "🤔", color: 0x6c5ce7 },
+      ].map((category) => ({
+        ...category,
+        userId: ctx.user.id,
+      })),
+    })
+
+    return c.json({ success: true, count: categories.count })
+  }),
+
+
 })
