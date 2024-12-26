@@ -1,8 +1,9 @@
-import { HeartIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export const useMediaQuery = () => {
-  const [device, setDevice] = useState<"mobile" | "tablet" | "desktop" | null>(null)
+  const [device, setDevice] = useState<"mobile" | "tablet" | "desktop" | null>(
+    null
+  )
 
   const [dimensions, setDimensions] = useState<{
     width: number
@@ -14,7 +15,7 @@ export const useMediaQuery = () => {
       if (window.matchMedia("(max-width: 640px)").matches) {
         setDevice("mobile")
       } else if (
-        window.matchMedia("(min-width:641px) and (max-width: 1024px)")
+        window.matchMedia("(min-width: 641px) and (max-width: 1024px)")
       ) {
         setDevice("tablet")
       } else {
@@ -29,7 +30,6 @@ export const useMediaQuery = () => {
     return () => {
       window.removeEventListener("resize", checkDevice)
     }
-
   }, [])
 
   return {
@@ -40,5 +40,4 @@ export const useMediaQuery = () => {
     isTablet: device === "tablet",
     isDesktop: device === "desktop",
   }
-
 }
