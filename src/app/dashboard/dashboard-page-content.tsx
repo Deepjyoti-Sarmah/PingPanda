@@ -98,7 +98,7 @@ const DashboardPageContent = () => {
                 <div className="flex items-center text-sm/5 text-gray-600">
                   <BarChart2 className="size-4 mr-2 text-brand-500" />
                   <span className="font-medium">Events this month:</span>
-                  <span className="ml-1">{category.eventsCounts || 0}</span>
+                  <span className="ml-1">{category.eventsCount || 0}</span>
                 </div>
               </div>
 
