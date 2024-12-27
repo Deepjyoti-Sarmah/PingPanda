@@ -6,10 +6,20 @@ meta {
 
 post {
   url: http://localhost:3000/api/v1/events
-  body: none
+  body: json
   auth: none
 }
 
 headers {
   Authorization: Bearer cm5552vce00011twvczq3u9vy
+}
+
+body:json {
+  {
+      "category": "sale",
+      "fields": {
+        "amount": "20", 
+        "email": "deep@gmail.com" 
+      }
+    }
 }
