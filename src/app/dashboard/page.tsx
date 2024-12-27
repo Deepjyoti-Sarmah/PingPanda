@@ -3,10 +3,10 @@ import { db } from '@/db';
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation';
 import React from 'react'
-import DashboardPageContent from './dashboard-page-content';
 import { CreateEventCategoryModal } from '@/components/create-event-category-modal';
 import { Button } from '@/components/ui/button';
 import { PlusIcon } from 'lucide-react';
+import { DashboardPageContent } from './dashboard-page-content';
 
 const Page = async () => {
 

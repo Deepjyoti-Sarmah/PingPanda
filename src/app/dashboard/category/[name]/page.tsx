@@ -29,21 +29,21 @@ const Page = async ({ params }: PageProps) => {
     where: {
       name_userId: {
         name: params.name,
-        userId: user.id
+        userId: user.id,
       },
     },
     include: {
       _count: {
         select: {
-          events: true
-        }
-      }
-    }
-  });
+          events: true,
+        },
+      },
+    },
+  })
 
-  if (!category) return notFound();
+  if (!category) return notFound()
 
-  const hasEvents = category._count.events > 0;
+  const hasEvents = category._count.events > 0
 
   return (
     <DashboardPage title={`${category.emoji} ${category.name} events`}>

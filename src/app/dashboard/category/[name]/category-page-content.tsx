@@ -1,19 +1,19 @@
 "use client"
 
-import { EventCategory } from "@prisma/client"
+import { Event, EventCategory } from "@prisma/client"
 import { useQuery } from "@tanstack/react-query"
 import { EmptyCategoryState } from "./empty-category-state"
-import { useMemo, useState } from "react"
-import { useSearchParams } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { client } from "@/lib/client"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
 import { BarChart } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Record } from "@prisma/client/runtime/library"
 import { isAfter, isToday, startOfMonth, startOfWeek } from "date-fns"
+import { LoadingSpinner } from "@/components/loading-spinner"
 
 interface CategoryPageContentProps {
-  hasEvents: boolean,
+  hasEvents: boolean
   category: EventCategory
 }
 
@@ -50,19 +50,38 @@ export const CategoryPageContent = ({
       activeTab,
     ],
     queryFn: async () => {
-      const res = await client.category.getEventByCategoryName.$get({
+      const res = await client.category.getEventsByCategoryName.$get({
         name: category.name,
         page: pagination.pageIndex + 1,
         limit: pagination.pageSize,
         timeRange: activeTab,
       })
 
-      return await res.json()
+      const data = await res.json()
+      console.log("Query response:", data)
+      return data
     },
     refetchOnWindowFocus: false,
     enabled: pollingData.hasEvents,
   })
 
+
+  /**
+   * I FORGOT THIS IN THE VIDEO
+   * Update URL when pagination changes
+   */
+  const router = useRouter()
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set("page", (pagination.pageIndex + 1).toString())
+    searchParams.set("limit", pagination.pageSize.toString())
+    router.push(`?${searchParams.toString()}`, { scroll: false })
+  }, [pagination, router])
+
+  /**
+   * END OF WHAT I FORGOT IN THE VIDEO
+   */
 
   const numericFieldSums = useMemo(() => {
     if (!data?.events || data.events.length === 0) return {}
@@ -93,15 +112,13 @@ export const CategoryPageContent = ({
           sums[field].total += value
 
           if (
-            isAfter(eventDate, weekStart) ||
-            eventDate.getTime() === weekStart.getTime()
+            isAfter(eventDate, weekStart) || eventDate.getTime() === weekStart.getTime()
           ) {
             sums[field].thisWeek += value
           }
 
           if (
-            isAfter(eventDate, monthStart) ||
-            eventDate.getTime() === monthStart.getTime()
+            isAfter(eventDate, monthStart) || eventDate.getTime() === monthStart.getTime()
           ) {
             sums[field].thisMonth += value
           }
@@ -117,7 +134,13 @@ export const CategoryPageContent = ({
   }, [data?.events])
 
   const NumericFieldSumCards = () => {
-    if (Object.keys(numericFieldSums).length === 0) return null
+    if (isFetching) {
+      return <LoadingSpinner />
+    }
+
+    if (Object.keys(numericFieldSums).length === 0) {
+      return <div>No numeric fields found</div>
+    }
 
     return Object.entries(numericFieldSums).map(([field, sums]) => {
       const relevantSum =
@@ -198,4 +221,3 @@ export const CategoryPageContent = ({
     </div>
   )
 }
-

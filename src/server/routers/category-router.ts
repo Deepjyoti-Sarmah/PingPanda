@@ -1,12 +1,11 @@
-import { db } from "@/db";
-import { router } from "../__internals/router";
-import { privateProcedure } from "../procedures";
+import { db } from "@/db"
+import { router } from "../__internals/router"
+import { privateProcedure } from "../procedures"
 import { startOfDay, startOfMonth, startOfWeek } from "date-fns"
-import { z } from "zod";
-import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator";
-import { parseColor } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { HTTPException } from "hono/http-exception";
+import { z } from "zod"
+import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator"
+import { HTTPException } from "hono/http-exception"
+import { parseColor } from "@/lib/utils"
 
 export const categoryRouter = router({
   getEventCategories: privateProcedure.query(async ({ c, ctx }) => {
@@ -75,7 +74,7 @@ export const categoryRouter = router({
       const { name } = input
 
       await db.eventCategory.delete({
-        where: { name_userId: { name, userId: ctx.user.id } }
+        where: { name_userId: { name, userId: ctx.user.id } },
       })
 
       return c.json({ success: true })
@@ -85,18 +84,18 @@ export const categoryRouter = router({
     .input(
       z.object({
         name: CATEGORY_NAME_VALIDATOR,
-        color: z.string()
+        color: z
+          .string()
           .min(1, "Color is required")
           .regex(/^#[0-9A-F]{6}$/i, "Invalid color format."),
         emoji: z.string().emoji("Invalid emoji").optional(),
       })
     )
-
-    //TODO: ADD Paid plan logic
-
     .mutation(async ({ c, ctx, input }) => {
       const { user } = ctx
       const { color, name, emoji } = input
+
+      // TODO: ADD PAID PLAN LOGIC
 
       const eventCategory = await db.eventCategory.create({
         data: {
@@ -131,16 +130,14 @@ export const categoryRouter = router({
       const { name } = input
 
       const category = await db.eventCategory.findUnique({
-        where: {
-          name_userId: { name, userId: ctx.user.id }
-        },
+        where: { name_userId: { name, userId: ctx.user.id } },
         include: {
           _count: {
             select: {
               events: true,
-            }
-          }
-        }
+            },
+          },
+        },
       })
 
       if (!category) {
@@ -154,13 +151,13 @@ export const categoryRouter = router({
       return c.json({ hasEvents })
     }),
 
-  getEventByCategoryName: privateProcedure
+  getEventsByCategoryName: privateProcedure
     .input(
       z.object({
         name: CATEGORY_NAME_VALIDATOR,
         page: z.number(),
         limit: z.number().max(50),
-        timeRange: z.enum(["today", "week", "month"])
+        timeRange: z.enum(["today", "week", "month"]),
       })
     )
     .query(async ({ c, ctx, input }) => {
@@ -189,26 +186,25 @@ export const categoryRouter = router({
           },
           skip: (page - 1) * limit,
           take: limit,
-          orderBy: { createdAt: "desc" }
+          orderBy: { createdAt: "desc" },
         }),
-
         db.event.count({
-          where: {
-            EventCategory: { name, userId: ctx.user.id },
-            createdAt: { gte: startDate }
-          },
-        }),
-
-        db.event.findMany({
           where: {
             EventCategory: { name, userId: ctx.user.id },
             createdAt: { gte: startDate },
           },
-          select: {
-            fields: true,
-          },
-          distinct: ["fields"]
-        })
+        }),
+        db.event
+          .findMany({
+            where: {
+              EventCategory: { name, userId: ctx.user.id },
+              createdAt: { gte: startDate },
+            },
+            select: {
+              fields: true,
+            },
+            distinct: ["fields"],
+          })
           .then((events) => {
             const fieldNames = new Set<string>()
             events.forEach((event) => {

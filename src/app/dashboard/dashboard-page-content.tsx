@@ -1,19 +1,19 @@
 "use client"
 
-import { LoadingSpinner } from '@/components/loading-spinner'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Modal } from '@/components/ui/model'
-import { client } from '@/lib/client'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { format, formatDistanceToNow } from 'date-fns'
-import { ArrowRight, BarChart2, Clock, Database, Trash2 } from 'lucide-react'
-import Link from 'next/link'
-import { useState } from 'react'
-import { DashboardEmptyState } from './dashboard-empty-state'
+import { LoadingSpinner } from "@/components/loading-spinner"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { client } from "@/lib/client"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { format, formatDistanceToNow } from "date-fns"
+import { ArrowRight, BarChart2, Clock, Database, Trash2 } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
+import { DashboardEmptyState } from "./dashboard-empty-state"
+import { Modal } from "@/components/ui/model"
 
-const DashboardPageContent = () => {
+export const DashboardPageContent = () => {
   const [deletingCategory, setDeletingCategory] = useState<string | null>(null)
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   const { data: categories, isPending: isEventCategoriesLoading } = useQuery({
     queryKey: ["user-event-categories"],
@@ -22,24 +22,25 @@ const DashboardPageContent = () => {
       const { categories } = await res.json()
       return categories
     },
-  });
-
-  const { mutate: deleteCategory, isPending: isDeletingCategory } = useMutation({
-    mutationFn: async (name: string) => {
-      await client.category.deleteCategory.$post({ name })
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user-event-categories"] })
-      setDeletingCategory(null)
-    }
   })
+
+  const { mutate: deleteCategory, isPending: isDeletingCategory } = useMutation(
+    {
+      mutationFn: async (name: string) => {
+        await client.category.deleteCategory.$post({ name })
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["user-event-categories"] })
+        setDeletingCategory(null)
+      },
+    }
+  )
 
   if (isEventCategoriesLoading) {
     return (
-      <div className='flex items-center justify-center flex-1 h-full w-full'>
+      <div className="flex items-center justify-center flex-1 h-full w-full">
         <LoadingSpinner />
       </div>
-
     )
   }
 
@@ -113,7 +114,6 @@ const DashboardPageContent = () => {
                 >
                   View all <ArrowRight className="size-4" />
                 </Link>
-
                 <Button
                   variant="ghost"
                   size="sm"
@@ -132,31 +132,28 @@ const DashboardPageContent = () => {
       <Modal
         showModal={!!deletingCategory}
         setShowModal={() => setDeletingCategory(null)}
-        className='max-w-md p-8'
+        className="max-w-md p-8"
       >
-        <div className='space-y-6'>
+        <div className="space-y-6">
           <div>
-            <h2 className='text-lg/7 font-medium tracking-tight text-gray-950'>
-              Delete category
+            <h2 className="text-lg/7 font-medium tracking-tight text-gray-950">
+              Delete Category
             </h2>
-            <p className='text-sm/6 text-gray-600'>
-              Are you sure you want to delete the category "{deletingCategory}?"
+            <p className="text-sm/6 text-gray-600">
+              Are you sure you want to delete the category "{deletingCategory}"?
               This action cannot be undone.
             </p>
           </div>
 
-          <div className='flex justify-end space-x-3 pt-4 border-t'>
-            <Button
-              variant="outline"
-              onClick={() => setDeletingCategory(null)}
-            >
+          <div className="flex justify-end space-x-3 pt-4 border-t">
+            <Button variant="outline" onClick={() => setDeletingCategory(null)}>
               Cancel
             </Button>
             <Button
               variant="destructive"
-              onClick={() => {
+              onClick={() =>
                 deletingCategory && deleteCategory(deletingCategory)
-              }}
+              }
               disabled={isDeletingCategory}
             >
               {isDeletingCategory ? "Deleting..." : "Delete"}
@@ -167,5 +164,3 @@ const DashboardPageContent = () => {
     </>
   )
 }
-
-export default DashboardPageContent

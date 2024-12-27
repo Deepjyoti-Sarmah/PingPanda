@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { atomDark, oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 export const EmptyCategoryState = ({
   categoryName,
@@ -108,4 +108,3 @@ export const EmptyCategoryState = ({
     </Card>
   )
 }
-
