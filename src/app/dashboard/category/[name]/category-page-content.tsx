@@ -1,6 +1,6 @@
 "use client"
 
-import { Event, EventCategory } from "@prisma/client"
+import { EventCategory } from "@prisma/client"
 import { useQuery } from "@tanstack/react-query"
 import { EmptyCategoryState } from "./empty-category-state"
 import { useEffect, useMemo, useState } from "react"
@@ -175,6 +175,7 @@ export const CategoryPageContent = ({
   }
 
   if (!pollingData.hasEvents) {
+    console.log("No events available for this category:", category.name)
     return <EmptyCategoryState categoryName={category.name} />
   }
 
