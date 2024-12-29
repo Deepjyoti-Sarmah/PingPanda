@@ -4,8 +4,8 @@ import { privateProcedure } from "../procedures"
 import { startOfDay, startOfMonth, startOfWeek } from "date-fns"
 import { z } from "zod"
 import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator"
+import { parseColor } from "@/utils"
 import { HTTPException } from "hono/http-exception"
-import { parseColor } from "@/lib/utils"
 
 export const categoryRouter = router({
   getEventCategories: privateProcedure.query(async ({ c, ctx }) => {

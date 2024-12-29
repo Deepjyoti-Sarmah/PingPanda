@@ -1,21 +1,21 @@
-import { addMonths, startOfMonth } from "date-fns";
-import { router } from "../__internals/router";
-import { privateProcedure } from "../procedures";
-import { db } from "@/db";
-import { FREE_QUOTA, PRO_QUOTA } from "@/config";
-import { z } from "zod";
+import { addMonths, startOfMonth } from "date-fns"
+import { router } from "../__internals/router"
+import { privateProcedure } from "../procedures"
+import { db } from "@/db"
+import { FREE_QUOTA, PRO_QUOTA } from "@/config"
+import { z } from "zod"
 
 export const projectRouter = router({
   getUsage: privateProcedure.query(async ({ c, ctx }) => {
     const { user } = ctx
 
-    const currentData = startOfMonth(new Date())
+    const currentDate = startOfMonth(new Date())
 
     const quota = await db.quota.findFirst({
       where: {
         userId: user.id,
-        year: currentData.getFullYear(),
-        month: currentData.getMonth() + 1,
+        year: currentDate.getFullYear(),
+        month: currentDate.getMonth() + 1,
       },
     })
 
@@ -27,7 +27,7 @@ export const projectRouter = router({
 
     const limits = user.plan === "PRO" ? PRO_QUOTA : FREE_QUOTA
 
-    const resetDate = addMonths(currentData, 1)
+    const resetDate = addMonths(currentDate, 1)
 
     return c.superjson({
       categoriesUsed: categoryCount,
