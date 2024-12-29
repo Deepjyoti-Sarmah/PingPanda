@@ -15,7 +15,7 @@ const Page = () => {
 
   const { data } = useQuery({
     queryFn: async () => {
-      const res = await client.auth.getDatabaseSyncStatus.$get();
+      const res = await client.auth.getDatabaseSyncStatus.$get()
       return await res.json()
     },
     queryKey: ["get-database-sync-status"],
