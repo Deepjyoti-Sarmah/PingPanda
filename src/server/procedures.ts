@@ -36,12 +36,12 @@ import { HTTPException } from "hono/http-exception"
 //  // Whatever you put inside of `next` is accessible to all following middlewares
 //  return await next({ db })
 //})
-//
+
 const authMiddleware = j.middleware(async ({ c, next }) => {
   const authHeader = c.req.header("Authorization")
 
   if (authHeader) {
-    const apiKey = authHeader.split(" ")[1]
+    const apiKey = authHeader.split(" ")[1] // bearer <API_KEY>
 
     const user = await db.user.findUnique({
       where: { apiKey },
@@ -66,6 +66,8 @@ const authMiddleware = j.middleware(async ({ c, next }) => {
 
   return next({ user })
 })
+
+
 //
 ///**
 // * Public (unauthenticated) procedures

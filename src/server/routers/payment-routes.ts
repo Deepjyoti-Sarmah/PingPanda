@@ -1,6 +1,6 @@
-import { createCheckoutSession } from "@/lib/strip";
-import { router } from "../__internals/router";
-import { privateProcedure } from "../procedures";
+import { createCheckoutSession } from "@/lib/stripe"
+import { router } from "../__internals/router"
+import { privateProcedure } from "../procedures"
 
 export const paymentRouter = router({
   createCheckoutSession: privateProcedure.mutation(async ({ c, ctx }) => {

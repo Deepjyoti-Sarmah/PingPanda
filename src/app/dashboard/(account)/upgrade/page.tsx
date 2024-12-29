@@ -12,7 +12,7 @@ const Page = async () => {
   }
 
   const user = await db.user.findUnique({
-    where: { externalId: auth.id }
+    where: { externalId: auth.id },
   })
 
   if (!user) {

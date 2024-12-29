@@ -4,9 +4,9 @@ import { Card } from "@/components/ui/card"
 import { client } from "@/lib/client"
 import { Plan } from "@prisma/client"
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { BarChart } from "lucide-react"
-import { useRouter } from "next/router"
 import { format } from "date-fns"
+import { BarChart } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
   const router = useRouter()
@@ -29,19 +29,16 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
     },
   })
 
-
-
   return (
     <div className="max-w-3xl flex flex-col gap-8">
       <div>
-        <h1 className="mt-2 text-xl/8 font-medium tracking-tight text-gray-900 ">
+        <h1 className="mt-2 text-xl/8 font-medium tracking-tight text-gray-900">
           {plan === "PRO" ? "Plan: Pro" : "Plan: Free"}
         </h1>
         <p className="text-sm/6 text-gray-600 max-w-prose">
           {plan === "PRO"
             ? "Thank you for supporting PingPanda. Find your increased usage limits below."
-            : "Get access to more events, categories and premium support."
-          }
+            : "Get access to more events, categories and premium support."}
         </p>
       </div>
 
@@ -54,7 +51,7 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
 
           <div>
             <p className="text-2xl font-bold">
-              {usageData?.eventsUsed || 0} of {" "}
+              {usageData?.eventsUsed || 0} of{" "}
               {usageData?.eventsLimit.toLocaleString() || 100}
             </p>
             <p className="text-xs/5 text-muted-foreground">
@@ -62,18 +59,15 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
             </p>
           </div>
         </Card>
-
         <Card>
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium">
-              Event categories
-            </p>
+            <p className="text-sm/6 font-medium">Event Categories</p>
             <BarChart className="size-4 text-muted-foreground" />
           </div>
 
           <div>
             <p className="text-2xl font-bold">
-              {usageData?.categoriesUsed || 0} of {" "}
+              {usageData?.categoriesUsed || 0} of{" "}
               {usageData?.categoriesLimit.toLocaleString() || 10}
             </p>
             <p className="text-xs/5 text-muted-foreground">Active categories</p>
@@ -98,8 +92,6 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
           </span>
         ) : null}
       </p>
-
     </div>
   )
 }
-
