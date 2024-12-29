@@ -1,18 +1,20 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { client } from "@/lib/client";
-import { useMutation } from "@tanstack/react-query";
-import Link from "next/link";
-import { useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { client } from "@/lib/client"
+import { useMutation } from "@tanstack/react-query"
+import Link from "next/link"
+import { useState } from "react"
 
-export const AccountSettings = ({ discordId: initialDiscordId }: {
+export const AccountSettings = ({
+  discordId: initialDiscordId,
+}: {
   discordId: string
 }) => {
-  const [discordId, setDiscordId] = useState(initialDiscordId);
+  const [discordId, setDiscordId] = useState(initialDiscordId)
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (discordId: string) => {
@@ -49,4 +51,3 @@ export const AccountSettings = ({ discordId: initialDiscordId }: {
     </Card>
   )
 }
-

@@ -20,7 +20,7 @@ const Page = async () => {
   }
 
   return (
-    <DashboardPage title="Api Key">
+    <DashboardPage title="API Key">
       <ApiKeySettings apiKey={user.apiKey ?? ""} />
     </DashboardPage>
   )
