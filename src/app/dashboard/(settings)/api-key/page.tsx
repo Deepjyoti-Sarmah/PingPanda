@@ -1,9 +1,8 @@
-
 import { DashboardPage } from "@/components/dashboard-page"
 import { db } from "@/db"
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { AccountSettings } from "./settings-page-content"
+import { ApiKeySettings } from "./api-key-settings"
 
 const Page = async () => {
   const auth = await currentUser()
@@ -21,8 +20,8 @@ const Page = async () => {
   }
 
   return (
-    <DashboardPage title="Account Settings">
-      <AccountSettings discordId={user.discordId ?? ""} />
+    <DashboardPage title="Api Key">
+      <ApiKeySettings apiKey={user.apiKey ?? ""} />
     </DashboardPage>
   )
 }
