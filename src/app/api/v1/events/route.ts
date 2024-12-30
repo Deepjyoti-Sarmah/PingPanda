@@ -39,6 +39,10 @@ export const POST = async (req: NextRequest) => {
       include: { EventCategories: true },
     })
 
+    if (!user) {
+      return NextResponse.json({ message: "Invalid API key" })
+    }
+
     if (!user?.discordId) {
       return NextResponse.json(
         { message: "Please enter your discord ID in your account settings" },
@@ -131,11 +135,10 @@ export const POST = async (req: NextRequest) => {
         userId: user.id,
         fields: validationResult.fields || {},
         eventCategoryId: category.id,
-      }
+      },
     })
 
     try {
-
       await discord.sendEmbed(dmChannel.id, eventData)
 
       await db.event.update({
@@ -182,9 +185,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     return NextResponse.json(
-      {
-        message: "Internal server error"
-      },
+      { message: "Internal server error" },
       { status: 500 }
     )
   }

@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { Modal } from "@/components/ui/model"
 import { cn } from "@/utils"
 import { UserButton } from "@clerk/nextjs"
-import { Gem, Home, Key, LucideIcon, Menu, Settings } from "lucide-react"
+import { Gem, Home, Key, LucideIcon, Menu, Settings, X } from "lucide-react"
 import Link from "next/link"
 import { PropsWithChildren, useState } from "react"
 
@@ -45,12 +45,9 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
   return (
     <div className="space-y-4 md:space-y-6 relative z-20 flex flex-col h-full">
       {/* logo */}
-
-      <Link href="/" className='flex z-40 font-semibold'>
-        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900">
-          Ping<span className="text-brand-700">Panda</span>
-        </p>
-      </Link>
+      <p className="hidden sm:block text-lg/7 font-semibold text-brand-900">
+        Ping<span className="text-brand-700">Panda</span>
+      </p>
 
       {/* navigation items */}
       <div className="flex-grow">
@@ -110,12 +107,9 @@ const Layout = ({ children }: PropsWithChildren) => {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* mobile header */}
         <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200">
-
-          <Link href="/" className='flex z-40 font-semibold'>
-            <p className="text-lg/7 font-semibold text-brand-900">
-              Ping<span className="text-brand-700">Panda</span>
-            </p>
-          </Link>
+          <p className="text-lg/7 font-semibold text-brand-900">
+            Ping<span className="text-brand-700">Panda</span>
+          </p>
           <button
             onClick={() => setIsDrawerOpen(true)}
             className="text-gray-500 hover:text-gray-600"
@@ -138,17 +132,17 @@ const Layout = ({ children }: PropsWithChildren) => {
           showModal={isDrawerOpen}
           setShowModal={setIsDrawerOpen}
         >
-          {/* <div className="flex justify-between items-center mb-4"> */}
-          {/*   <p className="text-lg/7 font-semibold text-brand-900"> */}
-          {/*     Ping<span className="text-brand-700">Panda</span> */}
-          {/*   </p> */}
-          {/*   <button */}
-          {/*     aria-label="Close modal" */}
-          {/*     onClick={() => setIsDrawerOpen(false)} */}
-          {/*   > */}
-          {/*     <X className="size-6" /> */}
-          {/*   </button> */}
-          {/* </div> */}
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-lg/7 font-semibold text-brand-900">
+              Ping<span className="text-brand-700">Panda</span>
+            </p>
+            <button
+              aria-label="Close modal"
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              <X className="size-6" />
+            </button>
+          </div>
 
           <Sidebar />
         </Modal>

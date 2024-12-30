@@ -31,8 +31,8 @@ const Page = () => {
   })
 
   const handleGetAccess = () => {
-    createCheckoutSession()
     if (user) {
+      createCheckoutSession()
     } else {
       router.push("/sign-in?intent=upgrade")
     }
