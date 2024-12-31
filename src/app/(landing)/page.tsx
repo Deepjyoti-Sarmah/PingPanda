@@ -29,7 +29,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className="relative py-24 sm:py-32 bg-brand-25">
+      <section className="relative py-24 sm:py-32 bg-brand-25 dark:bg-dark-background">
         <MaxWidthWrapper className="text-center">
           <div className="relative mx-auto text-center flex flex-col items-center gap-10">
             <div>
@@ -37,22 +37,22 @@ export default async function Home() {
                 <span>Real-Time SaaS Insights,</span>
                 <br />
                 <span
-                  className="relative bg-gradient-to-r from-brand-700 to-brand-800 text-transparent bg-clip-text"
+                  className="relative bg-gradient-to-r from-brand-700 to-brand-800 text-transparent bg-clip-text dark:bg-gradient-to-r dark:from-brand-600 dark:to-brand-700"
                 >
                   Delivered to Your Discord
                 </span>
               </Heading>
             </div>
-            <p className="text-base/7 text-gray-600 max-w-prose text-center text-pretty">PingPanda is the easiest way to monitor your SaaS. Get instance notifications for{" "}
-              <span className="font-semibold text-gray-700">sales, new users, or any other event{" "}
+            <p className="text-base/7 text-gray-600 max-w-prose text-center text-pretty dark:text-zinc-400">PingPanda is the easiest way to monitor your SaaS. Get instance notifications for{" "}
+              <span className="font-semibold text-gray-700 dark:text-zinc-300">sales, new users, or any other event{" "}
               </span>sent directly to your discord
             </p>
-            <ul className="space-y-2 text-base/7 text-gray-600 text-left flex flex-col items-start">
+            <ul className="space-y-2 text-base/7 text-gray-600 text-left flex flex-col items-start dark:text-zinc-400">
               {[
                 "Real-time Discord alert for critical events", "Buy once, use forever", "Track sales, new users, or any other event"
               ].map((item, index) => (
                 <li key={index} className="flex gap-1.5 items-center text-left">
-                  <Check className="size-5 shrink-0 text-brand-700" />
+                  <Check className="size-5 shrink-0 text-brand-700 dark:text-brand-600" />
                   {item}
                 </li>
               ))}
@@ -69,7 +69,7 @@ export default async function Home() {
         </MaxWidthWrapper>
       </section >
 
-      <section className="relative bg-brand-25 pb-4">
+      <section className="relative bg-brand-25 pb-4 dark:bg-dark-background">
         <div className="absolute inset-x-0 bottom-24 top-24 bg-brand-700" />
         <div className="relative mx-auto">
           <MaxWidthWrapper className="relative">
@@ -117,14 +117,13 @@ export default async function Home() {
                     }}
                   />
                 </AnimatedList>
-
               </MockDiscordUI>
             </div>
           </MaxWidthWrapper>
         </div>
       </section>
 
-      <section id="features" className="relative py-24 sm:py-32 bg-brand-25">
+      <section id="features" className="relative py-24 sm:py-32 bg-brand-25 dark:bg-dark-background">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-20">
           <div>
             <h2 className="text-center text-base/7 font-semibold text-brand-600">
@@ -136,7 +135,7 @@ export default async function Home() {
           <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
             {/* first bento grid element */}
             <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]" />
+              <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem] dark:bg-brand-50" />
 
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
                 <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
@@ -166,7 +165,7 @@ export default async function Home() {
 
             {/* second bento grid element */}
             <div className="relative max-lg:row-start-1">
-              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]" />
+              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem] dark:bg-brand-50" />
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                   <p className="mt-2 text-lg/7 font-medium tracking-tight text-brand-950 max-lg:text-center">
@@ -192,7 +191,7 @@ export default async function Home() {
 
             {/* third bento grid element */}
             <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-              <div className="absolute inset-px rounded-lg bg-white" />
+              <div className="absolute inset-px rounded-lg bg-white dark:bg-brand-50" />
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                   <p className="mt-2 text-lg/7 font-medium tracking-tight text-brand-950 max-lg:text-center">
@@ -220,7 +219,7 @@ export default async function Home() {
 
             {/* fourth bento grid element */}
             <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]" />
+              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem] dark:bg-brand-50" />
 
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
                 <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
@@ -274,7 +273,7 @@ export default async function Home() {
         </MaxWidthWrapper>
       </section >
 
-      <section id="testimonials" className="relative py-24 sm:py-32 bg-white">
+      <section id="testimonials" className="relative py-24 sm:py-32 bg-white dark:bg-dark-background">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-20">
           <div>
             <h2 className="text-center text-base/7 font-semibold text-brand-600">
@@ -285,7 +284,7 @@ export default async function Home() {
 
           <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-200">
             {/* first customer review */}
-            <div className="flex flex-auto flex-col gap-4 bg-brand-25 p-6 sm:p-8 lg:p-16 rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem]">
+            <div className="flex flex-auto flex-col gap-4 bg-brand-25 p-6 sm:p-8 lg:p-16 rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem] dark:bg-brand-100">
               <div className="flex gap-0.5 mb-2 justify-center lg:justify-start">
                 <Star className="size-5 text-brand-600 fill-brand-600" />
                 <Star className="size-5 text-brand-600 fill-brand-600" />
@@ -319,7 +318,7 @@ export default async function Home() {
             </div>
 
             {/* second customer review */}
-            <div className="flex flex-auto flex-col gap-4 bg-brand-25 p-6 sm:p-8 lg:p-16 rounded-b-[2rem] lg:rounded-bl-none lg:rounded-r-[2rem]">
+            <div className="flex flex-auto flex-col gap-4 bg-brand-25 p-6 sm:p-8 lg:p-16 rounded-b-[2rem] lg:rounded-bl-none lg:rounded-r-[2rem] dark:bg-brand-100">
               <div className="flex gap-0.5 mb-2 justify-center lg:justify-start">
                 <Star className="size-5 text-brand-600 fill-brand-600" />
                 <Star className="size-5 text-brand-600 fill-brand-600" />
@@ -361,7 +360,7 @@ export default async function Home() {
         </MaxWidthWrapper>
       </section >
 
-      <section>
+      <section className="relative py-24 sm:py-32 bg-brand-25 dark:bg-dark-background">
         <Footer />
       </section >
     </>

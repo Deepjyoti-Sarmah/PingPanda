@@ -4,19 +4,20 @@ import { SignOutButton } from "@clerk/nextjs"
 import { Button, buttonVariants } from "./ui/button"
 import { ArrowRight } from "lucide-react"
 import { currentUser } from "@clerk/nextjs/server"
+import { ModeToggle } from "./mode-toggle"
 
 export const Navbar = async () => {
   const user = await currentUser()
 
   return (
-    <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-all">
+    <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-all dark:bg-dark-background dark:bg-dark-background/80 dark:backdrop-blur-lg dark:transition-all dark:border-gray-700">
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex z-40 font-semibold">
-            Ping<span className="text-brand-700">Panda</span>
+          <Link href="/" className="flex z-40 font-semibold dark:text-zinc-300">
+            Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
           </Link>
 
-          <div className="h-full flex items-center space-x-4">
+          <div className="h-full flex items-center space-x-4 dark:text-zinc-300">
             {user ? (
               <>
                 <SignOutButton>
@@ -34,6 +35,7 @@ export const Navbar = async () => {
                 >
                   Dashboard <ArrowRight className="ml-1.5 size-4" />
                 </Link>
+                <ModeToggle />
               </>
             ) : (
               <>
@@ -67,6 +69,7 @@ export const Navbar = async () => {
                 >
                   Sign up <ArrowRight className="size-4" />
                 </Link>
+                <ModeToggle />
               </>
             )}
           </div>
