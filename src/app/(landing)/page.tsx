@@ -70,7 +70,7 @@ export default async function Home() {
       </section >
 
       <section className="relative bg-brand-25 pb-4 dark:bg-dark-background">
-        <div className="absolute inset-x-0 bottom-24 top-24 bg-brand-700" />
+        <div className="absolute inset-x-0 bottom-24 top-24 bg-brand-700 dark:bg-brand-800" />
         <div className="relative mx-auto">
           <MaxWidthWrapper className="relative">
             <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
@@ -282,7 +282,7 @@ export default async function Home() {
             <Heading className="text-center">What our customers say</Heading>
           </div>
 
-          <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-200">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-200 dark:divide-gray-300">
             {/* first customer review */}
             <div className="flex flex-auto flex-col gap-4 bg-brand-25 p-6 sm:p-8 lg:p-16 rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem] dark:bg-brand-100">
               <div className="flex gap-0.5 mb-2 justify-center lg:justify-start">
