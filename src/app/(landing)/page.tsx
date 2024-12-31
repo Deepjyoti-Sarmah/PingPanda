@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Icons } from "@/components/icons";
+import { Footer } from "@/components/footer";
 
 export default async function Home() {
   const codeSnippet = `await fetch("http://localhost:3000/api/v1/events", {
@@ -358,6 +359,9 @@ export default async function Home() {
             Start For Free Today
           </ShinyButton>
         </MaxWidthWrapper>
+      </section >
+      <section>
+        <Footer />
       </section >
     </>
   )
