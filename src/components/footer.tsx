@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { MaxWidthWrapper } from '@/components/max-width-wrapper'
-import { Twitter, Linkedin, Github } from 'lucide-react'
+"use client"
+import React from 'react';
+import Link from 'next/link';
+import { Twitter, Linkedin, Github } from 'lucide-react';
+import { MaxWidthWrapper } from '@/components/max-width-wrapper';
 
 const productLinks = [
-  { name: 'Features', href: '/features' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Integrations', href: '/integrations' },
-  { name: 'FAQ', href: '/faq' },
+  { name: 'Features', href: '#features' },
+  { name: 'Testimonials', href: '#testimonials' },
 ]
 
 const legalLinks = [
@@ -21,7 +21,15 @@ const socialLinks = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/Deepjyoti-Sarmah' },
 ]
 
-export const Footer = () => {
+const scrollToSection = (e: any, sectionId: any) => {
+  e.preventDefault();
+  const element = document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+export default function Footer() {
   return (
     <footer className="bg-brand-25 border-t border-gray-200">
       <MaxWidthWrapper className="py-12 md:py-24">
@@ -34,19 +42,25 @@ export const Footer = () => {
               Real-Time SaaS Insights, Delivered to Your Discord
             </p>
           </div>
+
           <div className="flex flex-wrap gap-8 lg:gap-16">
             <div>
               <h3 className="text-sm font-semibold text-gray-900">Product</h3>
               <ul className="mt-4 space-y-2">
                 {productLinks.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-sm text-gray-600 hover:text-brand-600">
+                    <Link
+                      href={item.href}
+                      onClick={(e) => scrollToSection(e, item.href)}
+                      className="text-sm text-gray-600 hover:text-brand-600 cursor-pointer"
+                    >
                       {item.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div>
               <h3 className="text-sm font-semibold text-gray-900">Legal</h3>
               <ul className="mt-4 space-y-2">
@@ -78,6 +92,5 @@ export const Footer = () => {
         </div>
       </MaxWidthWrapper>
     </footer>
-  )
+  );
 }
-

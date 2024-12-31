@@ -9,7 +9,7 @@ import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Icons } from "@/components/icons";
-import { Footer } from "@/components/footer";
+import Footer from "@/components/footer";
 
 export default async function Home() {
   const codeSnippet = `await fetch("http://localhost:3000/api/v1/events", {
@@ -124,7 +124,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="relative py-24 sm:py-32 bg-brand-25">
+      <section id="features" className="relative py-24 sm:py-32 bg-brand-25">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-20">
           <div>
             <h2 className="text-center text-base/7 font-semibold text-brand-600">
@@ -274,7 +274,7 @@ export default async function Home() {
         </MaxWidthWrapper>
       </section >
 
-      <section className="relative py-24 sm:py-32 bg-white">
+      <section id="testimonials" className="relative py-24 sm:py-32 bg-white">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-20">
           <div>
             <h2 className="text-center text-base/7 font-semibold text-brand-600">
@@ -360,6 +360,7 @@ export default async function Home() {
           </ShinyButton>
         </MaxWidthWrapper>
       </section >
+
       <section>
         <Footer />
       </section >
