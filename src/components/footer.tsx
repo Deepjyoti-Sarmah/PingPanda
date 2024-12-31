@@ -12,7 +12,7 @@ const productLinks = [
 const legalLinks = [
   { name: 'Privacy', href: '/' },
   { name: 'Terms', href: '/' },
-  { name: 'Cookie Policy', href: '/' },
+  // { name: 'Cookie Policy', href: '/' },
 ]
 
 const socialLinks = [
