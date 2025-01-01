@@ -282,7 +282,7 @@ export const CategoryPageContent = ({
           setActiveTab(value as "today" | "week" | "month")
         }}
       >
-        <TabsList className="mb-2 ">
+        <TabsList className="mb-2 dark:bg-zinc-200 dark:text-zinc-900">
           <TabsTrigger value="today">Today</TabsTrigger>
           <TabsTrigger value="week">This Week</TabsTrigger>
           <TabsTrigger value="month">This Month</TabsTrigger>
@@ -325,9 +325,9 @@ export const CategoryPageContent = ({
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
+                <TableRow key={headerGroup.id} className="dark:hover:bg-zinc-100">
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="dark:text-zinc-700">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -343,10 +343,10 @@ export const CategoryPageContent = ({
             <TableBody>
               {isFetching ? (
                 [...Array(5)].map((_, rowIndex) => (
-                  <TableRow key={rowIndex}>
+                  <TableRow key={rowIndex} className="dark:hover:bg-zinc-100">
                     {columns.map((_, cellIndex) => (
-                      <TableCell key={cellIndex}>
-                        <div className="h-4 w-full bg-gray-200 animate-pulse rounded" />
+                      <TableCell key={cellIndex} className="dark:text-zinc-900">
+                        <div className="h-4 w-full bg-gray-200 text-zinc-950 dark:bg-zinc-100 animate-pulse rounded" />
                       </TableCell>
                     ))}
                   </TableRow>
@@ -368,7 +368,7 @@ export const CategoryPageContent = ({
                 <TableRow>
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className="h-24 text-center dark:bg-zinc-100 dark:text-zinc-900"
                   >
                     No results.
                   </TableCell>
@@ -385,6 +385,7 @@ export const CategoryPageContent = ({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage() || isFetching}
+          className="w-fit bg-white dark:hover:bg-gray-200 dark:hover:text-black"
         >
           Previous
         </Button>
@@ -393,6 +394,7 @@ export const CategoryPageContent = ({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage() || isFetching}
+          className="w-fit bg-white dark:hover:bg-gray-200 dark:hover:text-black"
         >
           Next
         </Button>
