@@ -23,7 +23,7 @@ export const DashboardPage = ({
   const router = useRouter()
 
   return (
-    <section className="flex-1 h-full w-full flex flex-col dark:bg-zinc-100">
+    <section className="flex-1 h-full w-full flex flex-col dark:bg-zinc-50">
       <div className="w-full p-6 sm:p-8 flex justify-between border-b border-gray-200">
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center gap-6">
           <div className="flex items-center gap-8">
