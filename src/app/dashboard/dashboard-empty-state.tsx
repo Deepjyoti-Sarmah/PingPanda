@@ -37,7 +37,7 @@ export const DashboardEmptyState = () => {
       <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
         <Button
           variant="outline"
-          className="flex items-center space-x-2 w-full sm:w-auto"
+          className="flex items-center space-x-2 w-full sm:w-auto dark:bg-white dark:text-black dark:hover:bg-zinc-100"
           onClick={() => insertQuickstartCategories()}
           disabled={isPending}
         >

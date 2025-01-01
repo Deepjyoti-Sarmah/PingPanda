@@ -50,7 +50,7 @@ export const DashboardPageContent = () => {
 
   return (
     <>
-      <ul className="grid max-w-6xl grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <ul className="grid max-w-6xl grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 ">
         {categories.map((category) => (
           <li
             key={category.id}
@@ -109,7 +109,7 @@ export const DashboardPageContent = () => {
                   className={buttonVariants({
                     variant: "outline",
                     size: "sm",
-                    className: "flex items-center gap-2 text-sm",
+                    className: "flex items-center gap-2 text-sm dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:hover:text-zinc-950",
                   })}
                 >
                   View all <ArrowRight className="size-4" />
@@ -117,7 +117,7 @@ export const DashboardPageContent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-gray-500 hover:text-red-600 transition-colors"
+                  className="text-gray-500 hover:text-red-600 transition-colors dark:hover:bg-zinc-200"
                   aria-label={`Delete ${category.name} category`}
                   onClick={() => setDeletingCategory(category.name)}
                 >

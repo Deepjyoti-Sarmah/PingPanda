@@ -41,17 +41,23 @@ const SIDEBAR_ITEMS: SidebarCategory[] = [
   },
 ]
 
+const Logos = () => {
+  return (
+    < Link href="/" className="flex z-40 font-semibold" >
+      <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
+        Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
+      </p>
+    </Link >
+  )
+}
+
+
 const Sidebar = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <div className="space-y-4 md:space-y-6 relative z-20 flex flex-col h-full">
       {/* logo */}
-      <Link href="/" className="flex z-40 font-semibold">
-        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
-          Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
-        </p>
-      </Link>
-
+      <Logos />
       {/* navigation items */}
       <div className="flex-grow ">
         <ul>
@@ -101,16 +107,6 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
 const Layout = ({ children }: PropsWithChildren) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
-  const Logos = () => {
-    return (
-      < Link href="/" className="flex z-40 font-semibold" >
-        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
-          Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
-        </p>
-      </Link >
-    )
-  }
-
   return (
     <div className="relative h-screen flex flex-col md:flex-row bg-white overflow-hidden dark:bg-dark-background">
       {/* sidebar for desktop */}
@@ -126,7 +122,7 @@ const Layout = ({ children }: PropsWithChildren) => {
             onClick={() => setIsDrawerOpen(true)}
             className="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
           >
-            <Menu className="size-6 " />
+            <Menu className="size-6 dark:bg-dark-background" />
           </button>
         </div>
 
@@ -140,21 +136,21 @@ const Layout = ({ children }: PropsWithChildren) => {
         </div>
 
         <Modal
-          className="p-4"
+          className="p-4 dark:bg-dark-background"
           showModal={isDrawerOpen}
           setShowModal={setIsDrawerOpen}
         >
-          <div className="flex justify-between items-center mb-4">
-            <Logos />
-            <Button
-              variant="outline"
-              aria-label="Close modal"
-              onClick={() => setIsDrawerOpen(false)}
-            >
-              <X className="size-6 dark:text-zinc-300" />
-            </Button>
-          </div>
-
+          {/* <div className="flex justify-between items-center mb-4"> */}
+          {/*   <Logos /> */}
+          {/*   <Button */}
+          {/*     variant="outline" */}
+          {/*     aria-label="Close modal" */}
+          {/*     onClick={() => setIsDrawerOpen(false)} */}
+          {/*   > */}
+          {/*     <X className="size-6 dark:text-zinc-300" /> */}
+          {/*   </Button> */}
+          {/* </div> */}
+          {/**/}
           <Sidebar />
         </Modal>
       </div >
