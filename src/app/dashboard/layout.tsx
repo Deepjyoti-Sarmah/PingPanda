@@ -46,12 +46,12 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
   return (
     <div className="space-y-4 md:space-y-6 relative z-20 flex flex-col h-full">
       {/* logo */}
-      {/* <Link href="/" className="flex z-40 font-semibold"> */}
-      {/*   <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300"> */}
-      {/*     Ping<span className="text-brand-700 dark:text-brand-600">Panda</span> */}
-      {/*   </p> */}
-      {/* </Link> */}
-      {/**/}
+      <Link href="/" className="flex z-40 font-semibold">
+        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
+          Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
+        </p>
+      </Link>
+
       {/* navigation items */}
       <div className="flex-grow ">
         <ul>
@@ -104,7 +104,6 @@ const Layout = ({ children }: PropsWithChildren) => {
   const Logos = () => {
     return (
       < Link href="/" className="flex z-40 font-semibold" >
-
         <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
           Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
         </p>
@@ -116,20 +115,12 @@ const Layout = ({ children }: PropsWithChildren) => {
     <div className="relative h-screen flex flex-col md:flex-row bg-white overflow-hidden dark:bg-dark-background">
       {/* sidebar for desktop */}
       <div className="hidden md:block w-64 lg:w-80 border-r border-gray-100 p-6 h-full text-brand-900 dark:text-zinc-300 relative z-10">
-        <Logos />
-        <div className="mt-4">
-          <Sidebar />
-        </div>
+        <Sidebar />
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* mobile header */}
         <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200">
-          {/* <Link href="/" className="flex z-40 font-semibold"> */}
-          {/*   <p className="text-lg/7 font-semibold text-brand-900 dark:text-zinc-300"> */}
-          {/*     Ping<span className="text-brand-700 dark:text-brand-600">Panda</span> */}
-          {/*   </p> */}
-          {/* </Link> */}
           <Logos />
           <button
             onClick={() => setIsDrawerOpen(true)}
@@ -154,12 +145,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           setShowModal={setIsDrawerOpen}
         >
           <div className="flex justify-between items-center mb-4">
-
-            <Link href="/" className="flex z-40 font-semibold">
-              <p className="text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
-                Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
-              </p>
-            </Link>
+            <Logos />
             <Button
               variant="outline"
               aria-label="Close modal"
