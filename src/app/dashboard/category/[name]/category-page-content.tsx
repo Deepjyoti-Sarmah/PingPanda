@@ -249,15 +249,15 @@ export const CategoryPageContent = ({
       return (
         <Card key={field}>
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium">
+            <p className="text-sm/6 font-medium dark:text-zinc-500">
               {field.charAt(0).toUpperCase() + field.slice(1)}
             </p>
-            <BarChart className="size-4 text-muted-foreground" />
+            <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 
           <div>
-            <p className="text-2xl font-bold">{relevantSum.toFixed(2)}</p>
-            <p className="text-xs/5 text-muted-foreground">
+            <p className="text-2xl font-bold dark:text-zinc-950">{relevantSum.toFixed(2)}</p>
+            <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">
               {activeTab === "today"
                 ? "today"
                 : activeTab === "week"
@@ -275,14 +275,14 @@ export const CategoryPageContent = ({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <Tabs
         value={activeTab}
         onValueChange={(value) => {
           setActiveTab(value as "today" | "week" | "month")
         }}
       >
-        <TabsList className="mb-2">
+        <TabsList className="mb-2 ">
           <TabsTrigger value="today">Today</TabsTrigger>
           <TabsTrigger value="week">This Week</TabsTrigger>
           <TabsTrigger value="month">This Month</TabsTrigger>
@@ -292,13 +292,13 @@ export const CategoryPageContent = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             <Card className="border-2 border-brand-700">
               <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <p className="text-sm/6 font-medium">Total Events</p>
-                <BarChart className="size-4 text-muted-foreground" />
+                <p className="text-sm/6 font-medium dark:text-zinc-500">Total Events</p>
+                <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
               </div>
 
               <div>
-                <p className="text-2xl font-bold">{data?.eventsCount || 0}</p>
-                <p className="text-xs/5 text-muted-foreground">
+                <p className="text-2xl font-bold dark:text-zinc-950">{data?.eventsCount || 0}</p>
+                <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">
                   Events{" "}
                   {activeTab === "today"
                     ? "today"
@@ -317,7 +317,7 @@ export const CategoryPageContent = ({
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div className="w-full flex flex-col gap-4">
-            <Heading className="text-3xl">Event overview</Heading>
+            <Heading className="text-3xl dark:text-zinc-900">Event overview</Heading>
           </div>
         </div>
 
@@ -379,7 +379,7 @@ export const CategoryPageContent = ({
         </Card>
       </div>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 ">
         <Button
           variant="outline"
           size="sm"
