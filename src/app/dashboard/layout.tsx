@@ -1,6 +1,6 @@
 "use client"
 
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Modal } from "@/components/ui/model"
 import { cn } from "@/utils"
 import { UserButton } from "@clerk/nextjs"
@@ -42,35 +42,36 @@ const SIDEBAR_ITEMS: SidebarCategory[] = [
 ]
 
 const Sidebar = ({ onClose }: { onClose?: () => void }) => {
+
   return (
     <div className="space-y-4 md:space-y-6 relative z-20 flex flex-col h-full">
       {/* logo */}
-      <Link href="/" className="flex z-40 font-semibold">
-        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900">
-          Ping<span className="text-brand-700">Panda</span>
-        </p>
-      </Link>
-
+      {/* <Link href="/" className="flex z-40 font-semibold"> */}
+      {/*   <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300"> */}
+      {/*     Ping<span className="text-brand-700 dark:text-brand-600">Panda</span> */}
+      {/*   </p> */}
+      {/* </Link> */}
+      {/**/}
       {/* navigation items */}
       <div className="flex-grow ">
         <ul>
           {SIDEBAR_ITEMS.map(({ category, items }) => (
             <li key={category} className="mb-4 md:mb-8">
-              <p className="text-xs font-medium leading-6 text-zinc-500">
+              <p className="text-xs font-medium leading-6 text-zinc-500 dark:text-zinc-400">
                 {category}
               </p>
-              <div className="-mx-2 flex flex-1 flex-col">
+              <div className="-mx-2 flex flex-1 flex-col ">
                 {items.map((item, i) => (
                   <Link
                     key={i}
                     href={item.href}
                     className={cn(
                       buttonVariants({ variant: "ghost" }),
-                      "w-full justify-start group flex items-center gap-x-2.5 rounded-md px-2 py-1.5 text-sm font-medium leading-6 text-zinc-700 hover:bg-gray-50 transition"
+                      "w-full justify-start group flex items-center gap-x-2.5 rounded-md px-2 py-1.5 text-sm font-medium leading-6 text-zinc-700 hover:bg-gray-50 transition dark:hover:bg-gray-600 dark:text-zinc-300"
                     )}
                     onClick={onClose}
                   >
-                    <item.icon className="size-4 text-zinc-500 group-hover:text-zinc-700" />
+                    <item.icon className="size-4 text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300" />
                     {item.text}
                   </Link>
                 ))}
@@ -81,13 +82,13 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
       </div>
 
       <div className="flex flex-col">
-        <hr className="my-4 md:my-6 w-full h-px bg-gray-100" />
+        <hr className="my-4 md:my-6 w-full h-px bg-gray-100 dark:bg-gray-25" />
 
         <UserButton
           showName
           appearance={{
             elements: {
-              userButtonBox: "flex-row-reverse",
+              userButtonBox: "flex-row-reverse dark:text-zinc-300",
             },
           }}
         />
@@ -96,29 +97,45 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
   )
 }
 
+
 const Layout = ({ children }: PropsWithChildren) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+  const Logos = () => {
+    return (
+      < Link href="/" className="flex z-40 font-semibold" >
+
+        <p className="hidden sm:block text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
+          Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
+        </p>
+      </Link >
+    )
+  }
+
   return (
-    <div className="relative h-screen flex flex-col md:flex-row bg-white overflow-hidden">
+    <div className="relative h-screen flex flex-col md:flex-row bg-white overflow-hidden dark:bg-dark-background">
       {/* sidebar for desktop */}
-      <div className="hidden md:block w-64 lg:w-80 border-r border-gray-100 p-6 h-full text-brand-900 relative z-10">
-        <Sidebar />
+      <div className="hidden md:block w-64 lg:w-80 border-r border-gray-100 p-6 h-full text-brand-900 dark:text-zinc-300 relative z-10">
+        <Logos />
+        <div className="mt-4">
+          <Sidebar />
+        </div>
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* mobile header */}
         <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200">
-          <Link href="/" className="flex z-40 font-semibold">
-            <p className="text-lg/7 font-semibold text-brand-900">
-              Ping<span className="text-brand-700">Panda</span>
-            </p>
-          </Link>
+          {/* <Link href="/" className="flex z-40 font-semibold"> */}
+          {/*   <p className="text-lg/7 font-semibold text-brand-900 dark:text-zinc-300"> */}
+          {/*     Ping<span className="text-brand-700 dark:text-brand-600">Panda</span> */}
+          {/*   </p> */}
+          {/* </Link> */}
+          <Logos />
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className="text-gray-500 hover:text-gray-600"
+            className="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
           >
-            <Menu className="size-6" />
+            <Menu className="size-6 " />
           </button>
         </div>
 
@@ -136,22 +153,26 @@ const Layout = ({ children }: PropsWithChildren) => {
           showModal={isDrawerOpen}
           setShowModal={setIsDrawerOpen}
         >
-          {/* <div className="flex justify-between items-center mb-4"> */}
-          {/*   <p className="text-lg/7 font-semibold text-brand-900"> */}
-          {/*     Ping<span className="text-brand-700">Panda</span> */}
-          {/*   </p> */}
-          {/*   <button */}
-          {/*     aria-label="Close modal" */}
-          {/*     onClick={() => setIsDrawerOpen(false)} */}
-          {/*   > */}
-          {/*     <X className="size-6" /> */}
-          {/*   </button> */}
-          {/* </div> */}
+          <div className="flex justify-between items-center mb-4">
+
+            <Link href="/" className="flex z-40 font-semibold">
+              <p className="text-lg/7 font-semibold text-brand-900 dark:text-zinc-300">
+                Ping<span className="text-brand-700 dark:text-brand-600">Panda</span>
+              </p>
+            </Link>
+            <Button
+              variant="outline"
+              aria-label="Close modal"
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              <X className="size-6 dark:text-zinc-300" />
+            </Button>
+          </div>
 
           <Sidebar />
         </Modal>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 
