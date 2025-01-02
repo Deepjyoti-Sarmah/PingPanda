@@ -91,7 +91,7 @@ export const CategoryPageContent = ({
       {
         accessorKey: "category",
         header: "Category",
-        cell: () => <span>{category.name || "Uncategorized"}</span>,
+        cell: () => <span className="dark:text-gray-100">{category.name || "Uncategorized"}</span>,
       },
       {
         accessorKey: "createdAt",
@@ -102,6 +102,7 @@ export const CategoryPageContent = ({
               onClick={() =>
                 column.toggleSorting(column.getIsSorted() === "asc")
               }
+              className="dark:text-zinc-700 dark:hover:text-zinc-100 dark:hover:bg-gray-700"
             >
               Date
               <ArrowUpDown className="ml-2 size-4" />
@@ -109,7 +110,11 @@ export const CategoryPageContent = ({
           )
         },
         cell: ({ row }) => {
-          return new Date(row.getValue("createdAt")).toLocaleString()
+          return (
+            <span className="dark:text-gray-100">
+              {new Date(row.getValue("createdAt")).toLocaleString()}
+            </span>
+          )
         },
       },
       ...(data?.events[0]
@@ -117,8 +122,11 @@ export const CategoryPageContent = ({
           accessorFn: (row: Event) =>
             (row.fields as Record<string, any>)[field],
           header: field,
-          cell: ({ row }: { row: Row<Event> }) =>
-            (row.original.fields as Record<string, any>)[field] || "-",
+          cell: ({ row }: { row: Row<Event> }) => (
+            <span className="dark:text-zinc-100">
+              {(row.original.fields as Record<string, any>)[field] || "-"}
+            </span >
+          ),
         }))
         : []),
       {
@@ -325,7 +333,7 @@ export const CategoryPageContent = ({
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id} className="dark:hover:bg-zinc-100">
+                <TableRow key={headerGroup.id} className="dark:hover:bg-zinc-100 dark:border-zinc-100">
                   {headerGroup.headers.map((header) => (
                     <TableHead key={header.id} className="dark:text-zinc-700">
                       {header.isPlaceholder
@@ -343,7 +351,9 @@ export const CategoryPageContent = ({
             <TableBody>
               {isFetching ? (
                 [...Array(5)].map((_, rowIndex) => (
-                  <TableRow key={rowIndex} className="dark:hover:bg-zinc-100">
+                  <TableRow
+                    key={rowIndex}
+                    className="dark:border-zinc-700 dark:hover:bg-zinc-800/50">
                     {columns.map((_, cellIndex) => (
                       <TableCell key={cellIndex} className="dark:text-zinc-900">
                         <div className="h-4 w-full bg-gray-200 text-zinc-950 dark:bg-zinc-100 animate-pulse rounded" />
@@ -353,9 +363,15 @@ export const CategoryPageContent = ({
                 ))
               ) : table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
+                  <TableRow
+                    key={row.id}
+                    className="dark:border-zinc-700 dark:hover:bg-gray-800/50"
+                  >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell
+                        key={cell.id}
+                        className="dark:text-zinc-300"
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -365,7 +381,7 @@ export const CategoryPageContent = ({
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
+                <TableRow className="dark:border-zinc-700">
                   <TableCell
                     colSpan={columns.length}
                     className="h-24 text-center dark:bg-zinc-100 dark:text-zinc-900"
