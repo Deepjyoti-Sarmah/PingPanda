@@ -102,7 +102,7 @@ export const CategoryPageContent = ({
               onClick={() =>
                 column.toggleSorting(column.getIsSorted() === "asc")
               }
-              className="dark:text-zinc-700 dark:hover:text-zinc-100 dark:hover:bg-gray-700"
+              className="dark:text-zinc-700 dark:hover:text-zinc-100 dark:hover:bg-zinc-500"
             >
               Date
               <ArrowUpDown className="ml-2 size-4" />
