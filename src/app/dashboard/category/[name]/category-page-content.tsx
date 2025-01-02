@@ -91,7 +91,7 @@ export const CategoryPageContent = ({
       {
         accessorKey: "category",
         header: "Category",
-        cell: () => <span className="dark:text-gray-100">{category.name || "Uncategorized"}</span>,
+        cell: () => <span className="dark:text-zinc-900">{category.name || "Uncategorized"}</span>,
       },
       {
         accessorKey: "createdAt",
@@ -111,7 +111,7 @@ export const CategoryPageContent = ({
         },
         cell: ({ row }) => {
           return (
-            <span className="dark:text-gray-100">
+            <span className="dark:text-zinc-900">
               {new Date(row.getValue("createdAt")).toLocaleString()}
             </span>
           )
@@ -123,7 +123,7 @@ export const CategoryPageContent = ({
             (row.fields as Record<string, any>)[field],
           header: field,
           cell: ({ row }: { row: Row<Event> }) => (
-            <span className="dark:text-zinc-100">
+            <span className="dark:text-zinc-900">
               {(row.original.fields as Record<string, any>)[field] || "-"}
             </span >
           ),
@@ -353,7 +353,7 @@ export const CategoryPageContent = ({
                 [...Array(5)].map((_, rowIndex) => (
                   <TableRow
                     key={rowIndex}
-                    className="dark:border-zinc-700 dark:hover:bg-zinc-800/50">
+                    className="dark:border-zinc-700 dark:hover:bg-zinc-300/50">
                     {columns.map((_, cellIndex) => (
                       <TableCell key={cellIndex} className="dark:text-zinc-900">
                         <div className="h-4 w-full bg-gray-200 text-zinc-950 dark:bg-zinc-100 animate-pulse rounded" />
@@ -365,7 +365,7 @@ export const CategoryPageContent = ({
                 table.getRowModel().rows.map((row) => (
                   <TableRow
                     key={row.id}
-                    className="dark:border-zinc-700 dark:hover:bg-gray-800/50"
+                    className="dark:border-zinc-700 dark:hover:bg-gray-100/50"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
