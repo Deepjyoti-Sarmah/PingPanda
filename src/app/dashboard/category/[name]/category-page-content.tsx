@@ -290,7 +290,7 @@ export const CategoryPageContent = ({
           setActiveTab(value as "today" | "week" | "month")
         }}
       >
-        <TabsList className="mb-2 dark:bg-zinc-200 dark:text-zinc-900">
+        <TabsList className="mb-2 dark:bg-zinc-200 dark:text-zinc-700">
           <TabsTrigger value="today">Today</TabsTrigger>
           <TabsTrigger value="week">This Week</TabsTrigger>
           <TabsTrigger value="month">This Month</TabsTrigger>

@@ -18,7 +18,7 @@ const Page = () => {
     },
     queryKey: ["get-database-sync-status"],
     refetchInterval: (query) => {
-      return query.state.data?.isSynced ? false : 3000
+      return query.state.data?.isSynced ? false : 2000
     },
   })
 
