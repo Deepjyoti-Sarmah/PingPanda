@@ -19,14 +19,14 @@ export const ApiKeySettings = ({ apiKey }: { apiKey: string }) => {
   return (
     <Card className="max-w-xl w-full">
       <div>
-        <Label>Your API Key</Label>
+        <Label className="dark:text-zinc-700">Your API Key</Label>
         <div className="mt-1 relative">
-          <Input type="password" value={apiKey} readOnly />
+          <Input className="dark:text-zinc-950" type="password" value={apiKey} readOnly />
           <div className="absolute space-x-0.5 inset-y-0 right-0 flex items-center">
             <Button
-              variant="ghost"
+              variant="outline"
               onClick={copyApiKey}
-              className="p-1 w-10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="p-1 w-10 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:focus:outline-none dark:bg-zinc-50 dark:focus:ring-2 dark:focus:ring-brand-500"
             >
               {copySuccess ? (
                 <CheckIcon className="size-4 text-brand-900" />

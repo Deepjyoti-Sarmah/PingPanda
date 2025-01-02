@@ -45,7 +45,7 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-2 border-brand-700">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium dark:text-zinc-900">Total Events</p>
+            <p className="text-sm/6 font-medium dark:text-zinc-700">Total Events</p>
             <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 
@@ -61,7 +61,7 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
         </Card>
         <Card>
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium dark:text-zinc-900">Event Categories</p>
+            <p className="text-sm/6 font-medium dark:text-zinc-700">Event Categories</p>
             <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 

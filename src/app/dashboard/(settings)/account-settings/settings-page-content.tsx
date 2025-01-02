@@ -26,9 +26,9 @@ export const AccountSettings = ({
   return (
     <Card className="max-w-xl w-full space-y-4">
       <div className="pt-2">
-        <Label>Discord ID</Label>
+        <Label className="dark:text-brand-700">Discord ID</Label>
         <Input
-          className="mt-1"
+          className="mt-1 dark:text-zinc-950"
           value={discordId}
           onChange={(e) => setDiscordId(e.target.value)}
           placeholder="Enter your Discord ID"
