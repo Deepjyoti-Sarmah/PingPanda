@@ -109,7 +109,7 @@ export const DashboardPageContent = () => {
                   className={buttonVariants({
                     variant: "outline",
                     size: "sm",
-                    className: "flex items-center gap-2 text-sm",
+                    className: "flex items-center gap-2 text-sm dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:hover:text-zinc-950",
                   })}
                 >
                   View all <ArrowRight className="size-4" />
@@ -117,7 +117,7 @@ export const DashboardPageContent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-gray-500 hover:text-red-600 transition-colors"
+                  className="text-gray-500 hover:text-red-600 transition-colors dark:hover:bg-zinc-200"
                   aria-label={`Delete ${category.name} category`}
                   onClick={() => setDeletingCategory(category.name)}
                 >

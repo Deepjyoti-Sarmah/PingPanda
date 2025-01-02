@@ -91,7 +91,7 @@ export const CategoryPageContent = ({
       {
         accessorKey: "category",
         header: "Category",
-        cell: () => <span>{category.name || "Uncategorized"}</span>,
+        cell: () => <span className="dark:text-zinc-900">{category.name || "Uncategorized"}</span>,
       },
       {
         accessorKey: "createdAt",
@@ -102,6 +102,7 @@ export const CategoryPageContent = ({
               onClick={() =>
                 column.toggleSorting(column.getIsSorted() === "asc")
               }
+              className="dark:text-zinc-700 dark:hover:text-zinc-100 dark:hover:bg-zinc-500"
             >
               Date
               <ArrowUpDown className="ml-2 size-4" />
@@ -109,7 +110,11 @@ export const CategoryPageContent = ({
           )
         },
         cell: ({ row }) => {
-          return new Date(row.getValue("createdAt")).toLocaleString()
+          return (
+            <span className="dark:text-zinc-900">
+              {new Date(row.getValue("createdAt")).toLocaleString()}
+            </span>
+          )
         },
       },
       ...(data?.events[0]
@@ -117,8 +122,11 @@ export const CategoryPageContent = ({
           accessorFn: (row: Event) =>
             (row.fields as Record<string, any>)[field],
           header: field,
-          cell: ({ row }: { row: Row<Event> }) =>
-            (row.original.fields as Record<string, any>)[field] || "-",
+          cell: ({ row }: { row: Row<Event> }) => (
+            <span className="dark:text-zinc-900">
+              {(row.original.fields as Record<string, any>)[field] || "-"}
+            </span >
+          ),
         }))
         : []),
       {
@@ -249,15 +257,15 @@ export const CategoryPageContent = ({
       return (
         <Card key={field}>
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium">
+            <p className="text-sm/6 font-medium dark:text-zinc-500">
               {field.charAt(0).toUpperCase() + field.slice(1)}
             </p>
-            <BarChart className="size-4 text-muted-foreground" />
+            <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 
           <div>
-            <p className="text-2xl font-bold">{relevantSum.toFixed(2)}</p>
-            <p className="text-xs/5 text-muted-foreground">
+            <p className="text-2xl font-bold dark:text-zinc-950">{relevantSum.toFixed(2)}</p>
+            <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">
               {activeTab === "today"
                 ? "today"
                 : activeTab === "week"
@@ -275,14 +283,14 @@ export const CategoryPageContent = ({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <Tabs
         value={activeTab}
         onValueChange={(value) => {
           setActiveTab(value as "today" | "week" | "month")
         }}
       >
-        <TabsList className="mb-2">
+        <TabsList className="mb-2 dark:bg-zinc-200 dark:text-zinc-900">
           <TabsTrigger value="today">Today</TabsTrigger>
           <TabsTrigger value="week">This Week</TabsTrigger>
           <TabsTrigger value="month">This Month</TabsTrigger>
@@ -292,13 +300,13 @@ export const CategoryPageContent = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             <Card className="border-2 border-brand-700">
               <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <p className="text-sm/6 font-medium">Total Events</p>
-                <BarChart className="size-4 text-muted-foreground" />
+                <p className="text-sm/6 font-medium dark:text-zinc-500">Total Events</p>
+                <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
               </div>
 
               <div>
-                <p className="text-2xl font-bold">{data?.eventsCount || 0}</p>
-                <p className="text-xs/5 text-muted-foreground">
+                <p className="text-2xl font-bold dark:text-zinc-950">{data?.eventsCount || 0}</p>
+                <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">
                   Events{" "}
                   {activeTab === "today"
                     ? "today"
@@ -317,7 +325,7 @@ export const CategoryPageContent = ({
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div className="w-full flex flex-col gap-4">
-            <Heading className="text-3xl">Event overview</Heading>
+            <Heading className="text-3xl dark:text-zinc-900">Event overview</Heading>
           </div>
         </div>
 
@@ -325,9 +333,9 @@ export const CategoryPageContent = ({
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
+                <TableRow key={headerGroup.id} className="dark:hover:bg-zinc-100 dark:border-zinc-100">
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="dark:text-zinc-700">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -343,19 +351,27 @@ export const CategoryPageContent = ({
             <TableBody>
               {isFetching ? (
                 [...Array(5)].map((_, rowIndex) => (
-                  <TableRow key={rowIndex}>
+                  <TableRow
+                    key={rowIndex}
+                    className="dark:border-zinc-700 dark:hover:bg-zinc-300/50">
                     {columns.map((_, cellIndex) => (
-                      <TableCell key={cellIndex}>
-                        <div className="h-4 w-full bg-gray-200 animate-pulse rounded" />
+                      <TableCell key={cellIndex} className="dark:text-zinc-900">
+                        <div className="h-4 w-full bg-gray-200 text-zinc-950 dark:bg-zinc-100 animate-pulse rounded" />
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
+                  <TableRow
+                    key={row.id}
+                    className="dark:border-zinc-700 dark:hover:bg-gray-100/50"
+                  >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell
+                        key={cell.id}
+                        className="dark:text-zinc-300"
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -365,10 +381,10 @@ export const CategoryPageContent = ({
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
+                <TableRow className="dark:border-zinc-700">
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className="h-24 text-center dark:bg-zinc-100 dark:text-zinc-900"
                   >
                     No results.
                   </TableCell>
@@ -379,12 +395,13 @@ export const CategoryPageContent = ({
         </Card>
       </div>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 ">
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage() || isFetching}
+          className="w-fit bg-white dark:hover:bg-gray-200 dark:hover:text-black"
         >
           Previous
         </Button>
@@ -393,6 +410,7 @@ export const CategoryPageContent = ({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage() || isFetching}
+          className="w-fit bg-white dark:hover:bg-gray-200 dark:hover:text-black"
         >
           Next
         </Button>

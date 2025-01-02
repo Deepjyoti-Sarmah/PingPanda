@@ -36,6 +36,7 @@ const config: Config = {
         'discord-gray': '#36393f',
         'discord-text': '#dcddde',
         'discord-timestamp': '#72767d',
+        'dark-background': "#191d29",
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

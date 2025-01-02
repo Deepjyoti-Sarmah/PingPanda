@@ -32,10 +32,10 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
   return (
     <div className="max-w-3xl flex flex-col gap-8">
       <div>
-        <h1 className="mt-2 text-xl/8 font-medium tracking-tight text-gray-900">
+        <h1 className="mt-2 text-xl/8 font-medium tracking-tight text-zinc-900">
           {plan === "PRO" ? "Plan: Pro" : "Plan: Free"}
         </h1>
-        <p className="text-sm/6 text-gray-600 max-w-prose">
+        <p className="text-sm/6 text-gray-600 dark:text-zinc-700 max-w-prose">
           {plan === "PRO"
             ? "Thank you for supporting PingPanda. Find your increased usage limits below."
             : "Get access to more events, categories and premium support."}
@@ -45,32 +45,32 @@ export const UpgradePageContent = ({ plan }: { plan: Plan }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-2 border-brand-700">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium">Total Events</p>
-            <BarChart className="size-4 text-muted-foreground" />
+            <p className="text-sm/6 font-medium dark:text-zinc-700">Total Events</p>
+            <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 
           <div>
-            <p className="text-2xl font-bold">
+            <p className="text-2xl font-bold dark:text-zinc-950">
               {usageData?.eventsUsed || 0} of{" "}
               {usageData?.eventsLimit.toLocaleString() || 100}
             </p>
-            <p className="text-xs/5 text-muted-foreground">
+            <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">
               Events this period
             </p>
           </div>
         </Card>
         <Card>
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <p className="text-sm/6 font-medium">Event Categories</p>
-            <BarChart className="size-4 text-muted-foreground" />
+            <p className="text-sm/6 font-medium dark:text-zinc-700">Event Categories</p>
+            <BarChart className="size-4 text-muted-foreground dark:text-zinc-500" />
           </div>
 
           <div>
-            <p className="text-2xl font-bold">
+            <p className="text-2xl font-bold dark:text-zinc-950">
               {usageData?.categoriesUsed || 0} of{" "}
               {usageData?.categoriesLimit.toLocaleString() || 10}
             </p>
-            <p className="text-xs/5 text-muted-foreground">Active categories</p>
+            <p className="text-xs/5 text-muted-foreground dark:text-zinc-500">Active categories</p>
           </div>
         </Card>
       </div>
