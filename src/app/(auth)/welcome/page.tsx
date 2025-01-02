@@ -32,8 +32,8 @@ const Page = () => {
 
       <div className="relative z-10 flex -translate-y-1/2 flex-col items-center gap-6 text-center">
         <LoadingSpinner size="md" />
-        <Heading className="text-gray-900 dark:text-gray-100">Creating your account...</Heading>
-        <p className="text-base/7 text-gray-600 max-w-prose dark:text-gray-400">
+        <Heading className="text-zinc-900 dark:text-zinc-300">Creating your account...</Heading>
+        <p className="text-base/7 text-zinc-600 max-w-prose dark:text-zinc-400">
           Just a moment while we set things up for you.
         </p>
       </div>
