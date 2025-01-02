@@ -10,7 +10,7 @@ export const Navbar = async () => {
   const user = await currentUser()
 
   return (
-    <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-all dark:bg-dark-background dark:bg-dark-background/80 dark:backdrop-blur-lg dark:transition-all dark:border-gray-700">
+    <nav className="sticky z-50 h-16 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-all dark:bg-dark-background dark:bg-dark-background/80 dark:backdrop-blur-lg dark:transition-all dark:border-gray-700">
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex z-40 font-semibold dark:text-zinc-300">
@@ -35,7 +35,9 @@ export const Navbar = async () => {
                 >
                   Dashboard <ArrowRight className="ml-1.5 size-4" />
                 </Link>
-                <ModeToggle />
+                <div className="ml-1">
+                  <ModeToggle />
+                </div>
               </>
             ) : (
               <>
@@ -69,7 +71,9 @@ export const Navbar = async () => {
                 >
                   Sign up <ArrowRight className="size-4" />
                 </Link>
-                <ModeToggle />
+                <div className="ml-1">
+                  <ModeToggle />
+                </div>
               </>
             )}
           </div>
